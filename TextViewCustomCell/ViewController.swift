@@ -54,25 +54,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCellWithIdentifier("customCell") as! CustomCellView
         
+        cell.detailTextView.text = data[indexPath.row]
         cell.titleLabel.text = "News " + String(indexPath.row)
         cell.titleLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         
         cell.detailTextView.font = UIFont(name: "Helvetica", size: 12)
         cell.detailTextView.textColor = UIColor.grayColor()
         cell.detailTextView.scrollRangeToVisible(NSRange(location:0, length:0))
-        cell.detailTextView.text = data[indexPath.row]
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        print(indexPath.row)
         let text = data[indexPath.row]
-        if (text.characters.count < 100) {
+        
+        if (text.characters.count < 85) {
             return 70.0
-        }else if (text.characters.count >= 100 && text.characters.count < 200) {
-            return 100.0
-        }else {
+        }else if (text.characters.count >= 85 && text.characters.count < 150) {
+            return 90.0
+        }else if (text.characters.count >= 150 && text.characters.count < 200) {
+            return 110.0
+        }else if (text.characters.count >= 200 && text.characters.count < 250) {
+            return 130.0
+        }else{
             return 150
         }
     }
